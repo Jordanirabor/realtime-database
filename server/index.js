@@ -40,6 +40,23 @@ db.once('open', () => {
     const changeStream = inventoryCollection.watch();
 
     changeStream.on('change', (change) => {
-
+        if (change.operationType === 'insert') {
+            const inventory = change.fullDocument;
+            pusher.trigger(
+                channel,
+                'inserted',
+                {
+                    id: inventory._id,
+                    name: inventory.name,
+                    price: inventory.price
+                }
+            );
+        } else if (change.operationType === 'delete') {
+            pusher.trigger(
+                channel,
+                'deleted',
+                change.documentKey._id
+            );
+        }
     });
 });
