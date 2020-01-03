@@ -9,16 +9,19 @@ const PUSHER_CLUSTER = process.env.REACT_APP_PUSHER_CLUSTER
 function App() {
 
   const [inventories, setInventories] = useState([]);
-  const [inventory, setInventory] = useState({});
+  const [inventory, setInventory] = useState({ name: '', price: '' });
 
-  handleChange = (evt) => {
-    setInventory(evt.target.value)
+  const handleChange = (evt) => {
+    const { name, value } = evt.target
+    setInventory(prevInventory => ({ ...prevInventory, [name]: value }))
   }
 
-  postInventory = (evt) => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    if (!inventory.length) {
+    console.log(inventory)
+
+    if (!(inventory.name.length && inventory.price)) {
       return;
     }
 
@@ -36,19 +39,19 @@ function App() {
     }).then(console.log)
   }
 
-  deleteInventory = id => {
+  const deleteInventory = id => {
     fetch(API_URL + id, {
       method: 'delete'
     }).then(console.log);
   }
 
-  addInventory = newInventory => {
-    setInventory(prevInventories => prevInventories.concat(newInventory))
-    setInventory({})
+  const addInventory = newInventory => {
+    setInventories(prevInventories => prevInventories.concat(newInventory))
+    setInventory({ name: '', price: '' })
   }
 
-  removeInventory = id => {
-    setInventory(prevInventories => prevInventories.filter(el => el.id !== id))
+  const removeInventory = id => {
+    setInventories(prevInventories => prevInventories.filter(el => el.id !== id))
   }
 
   useEffect(() => {
@@ -60,15 +63,34 @@ function App() {
     let channel = pusher.subscribe('inventories');
     channel.bind('inserted', addInventory)
     channel.bind('deleted', removeInventory)
-
-  })
-
-
+  }, [])
 
   return (
-    <div>
+    <div className="inventory">
+      <h2> INVENTORY LIST</h2>
+
+      <div className="list">
+          {inventories.map(inventory => <Inventory key={inventory.id} inventory={inventory} onItemClick={deleteInventory} />)}
+      </div>
+
+      <div className="form-holder">
+        <form className="form">
+          <input type="text" name="name" className="name" placeholder="Name" onChange={handleChange} value={inventory.name} />
+          <input type="number" name="price" className="price" placeholder="Price" onChange={handleChange} value={inventory.price} />
+          <div className="submit" onClick={handleSubmit}>+</div>
+        </form>
+      </div>
 
     </div>
+  );
+}
+
+function Inventory(props) {
+  return (
+    <li key={props.inventory.id}>
+      <div className="text">{props.inventory.name} {props.inventory.price}</div>
+      <div className="delete" onClick={() => props.onItemClick(props.inventory.id)}>-</div>
+    </li>
   );
 }
 
