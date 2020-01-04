@@ -70,7 +70,9 @@ function App() {
       <h2> INVENTORY LIST</h2>
 
       <div className="list">
-          {inventories.map(inventory => <Inventory key={inventory.id} inventory={inventory} onItemClick={deleteInventory} />)}
+        <div> Name </div>
+        <div> Price</div>
+        {inventories.map(inventory => <Inventory key={inventory.id} inventory={inventory} onItemClick={deleteInventory} />)}
       </div>
 
       <div className="form-holder">
@@ -87,10 +89,10 @@ function App() {
 
 function Inventory(props) {
   return (
-    <li key={props.inventory.id}>
+    <div key={props.inventory.id}>
       <div className="text">{props.inventory.name} {props.inventory.price}</div>
       <div className="delete" onClick={() => props.onItemClick(props.inventory.id)}>-</div>
-    </li>
+    </div>
   );
 }
 
