@@ -5,11 +5,11 @@ const api = require('./routes/api');
 const Pusher = require('pusher');
 
 const pusher = new Pusher({
-    appId: '',
-    key: '',
-    secret: '',
-    cluster: '',
-    encrypted: true
+    appId: '<INSERT_APP_ID>',
+    key: '<INSERT_APP_KEY>',
+    secret: '<INSERT_APP_SECRET>',
+    cluster: '<INSERT_APP_CLUSTER>',
+    encrypted: true,
 });
 
 const channel = 'inventories'

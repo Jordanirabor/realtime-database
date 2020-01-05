@@ -1,15 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans Condensed", sans-serif;
+  padding: 20px 80px;
+  background: #61dafb;
+}
+
 .inventory {
   text-align: center;
   width: 550px;
   margin: 0 auto;
 }
 
-.list {
-  display: flex;
+.list,
+.form-holder {
   border: 1px solid black;
-  padding: 4px;
+  padding: 5px;
+  margin: 20px 0px;
 }
 
-.list div:first-child{
-  color: red;
+.list div:first-child {
+  border-bottom: 1px solid black;
+}
+
+.list div:first-child button {
+  visibility: hidden;
+}
+
+.list > div,
+.form-holder form {
+  width: 300px;
+  margin: 20px auto;
+}
+
+.list div h2,
+.list div p,
+form input {
+  display: inline-block;
+  padding: 5px 0px;
+  width: 38%;
+  margin: 2px;
+  outline: none;
+}
+
+.list div button,
+.form-holder form button {
+  width: 18%;
+  padding: 3px;
+  background: tomato;
+  color: white;
+  padding: 6px;
+  border: none;
+  font-size: bold;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.form-holder form button {
+  background: black;
 }

@@ -19,8 +19,6 @@ function App() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    console.log(inventory)
-
     if (!(inventory.name.length && inventory.price)) {
       return;
     }
@@ -70,16 +68,23 @@ function App() {
       <h2> INVENTORY LIST</h2>
 
       <div className="list">
-        <div> Name </div>
-        <div> Price</div>
+        <div>
+          <h2>Name</h2>
+          <h2>Price</h2>
+          <button></button>
+        </div>
+
         {inventories.map(inventory => <Inventory key={inventory.id} inventory={inventory} onItemClick={deleteInventory} />)}
       </div>
 
+      <h2> ADD NEW ITEMS </h2>
+
+
       <div className="form-holder">
         <form className="form">
-          <input type="text" name="name" className="name" placeholder="Name" onChange={handleChange} value={inventory.name} />
-          <input type="number" name="price" className="price" placeholder="Price" onChange={handleChange} value={inventory.price} />
-          <div className="submit" onClick={handleSubmit}>+</div>
+          <input type="text" required name="name" className="name" placeholder="Name" onChange={handleChange} value={inventory.name} />
+          <input type="number" required name="price" className="price" placeholder="Price" onChange={handleChange} value={inventory.price} />
+          <button type="submit" className="submit" onClick={handleSubmit}>+</button>
         </form>
       </div>
 
@@ -90,8 +95,9 @@ function App() {
 function Inventory(props) {
   return (
     <div key={props.inventory.id}>
-      <div className="text">{props.inventory.name} {props.inventory.price}</div>
-      <div className="delete" onClick={() => props.onItemClick(props.inventory.id)}>-</div>
+      <p>{props.inventory.name}</p>
+      <p>{props.inventory.price}</p>
+      <button className="delete" onClick={() => props.onItemClick(props.inventory.id)}>X</button>
     </div>
   );
 }
