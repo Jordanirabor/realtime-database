@@ -33,7 +33,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error:'));
 db.once('open', () => {
     app.listen(9000, () => {
-        console.log('Running on port 7000');
+        console.log('Running on port 9000');
     });
 
     const inventoryCollection = db.collection('inventories');
