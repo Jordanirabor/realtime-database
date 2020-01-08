@@ -1,0 +1,1 @@
+The idea behind this repository is to build a persistent real-time database using MongoDB and Pusher. MongoDB's change streams allow us to listen for changes in collections, and Pusher gives us the real-time broadcast service that makes the data changes available to all connected clients.
