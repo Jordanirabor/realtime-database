@@ -7,7 +7,6 @@ const PUSHER_KEY = process.env.REACT_APP_PUSHER_KEY
 const PUSHER_CLUSTER = process.env.REACT_APP_PUSHER_CLUSTER
 
 function App() {
-
   const [inventories, setInventories] = useState([]);
   const [inventory, setInventory] = useState({ name: '', price: '' });
 
