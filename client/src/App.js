@@ -79,7 +79,6 @@ function App() {
 
       <h2> ADD NEW ITEMS </h2>
 
-
       <div className="form-holder">
         <form className="form">
           <input type="text" required name="name" className="name" placeholder="Name" onChange={handleChange} value={inventory.name} />
