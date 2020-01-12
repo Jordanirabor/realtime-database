@@ -23,5 +23,5 @@ The idea behind this repository is to build a persistent real-time database usin
 2. Play around with the application.
 
 ## Built With
-Angular - MongoDB is a cross-platform document-oriented database program.
+MongoDB - MongoDB is a cross-platform document-oriented database program.
 Pusher - Pusher empowers developers with APIs to create collaboration & communication features in their web and mobile apps.
