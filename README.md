@@ -24,4 +24,4 @@ The idea behind this repository is to build a persistent real-time database usin
 
 ## Built With
 MongoDB - MongoDB is a cross-platform document-oriented database program.
-Pusher - Pusher empowers developers with APIs to create collaboration & communication features in their web and mobile apps.
+Pusher - Pusher empowers developers with APIs to create collaboration & communication features in their web and mobile applications.
